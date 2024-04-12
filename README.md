@@ -1,4 +1,5 @@
 Sistema de Monitoramento de Sensores
+
 Bem-vindo à documentação do Sistema de Monitoramento de Sensores! Esta solução foi desenvolvida para receber, armazenar e visualizar dados de sensores em tempo real, proporcionando aos usuários uma maneira fácil de monitorar e analisar os dados coletados.
 
 Visão Geral do Projeto
