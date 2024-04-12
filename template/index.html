@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sensor Data</title>
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+</head>
+<body>
+    <h1>Valor Médio dos Sensores</h1>
+    
+    <div id="chart_24_hours"></div>
+    <div id="chart_48_hours"></div>
+    <div id="chart_1_week"></div>
+    <div id="chart_1_month"></div>
+
+    <script>
+        var last_24_hours_data = {{ last_24_hours_data | tojson }};
+        var last_48_hours_data = {{ last_48_hours_data | tojson }};
+        var last_week_data = {{ last_week_data | tojson }};
+        var last_month_data = {{ last_month_data | tojson }};
+
+        function createPlot(id, title, data) {
+            var values = data.map(function(item) { return item[1]; });
+            var labels = data.map(function(item) { return item[0]; });
+            
+            var trace = {
+                x: labels,
+                y: values,
+                type: 'bar'
+            };
+            
+            var layout = {
+                title: title
+            };
+            
+            Plotly.newPlot(id, [trace], layout);
+        }
+
+        createPlot('chart_24_hours', 'Últimas 24 Horas', last_24_hours_data);
+        createPlot('chart_48_hours', 'Últimas 48 Horas', last_48_hours_data);
+        createPlot('chart_1_week', 'Última Semana', last_week_data);
+        createPlot('chart_1_month', 'Último Mês', last_month_data);
+    </script>
+</body>
+</html>
